@@ -112,11 +112,25 @@ int main()
                         int x = (int) stoi(theMove.substr(0, 1)); // add trim maybe
                         int y = (int) stoi(theMove.substr(theMove.find(",") + 2, 1));
                         pveEasyGame.play(x, y);
-                        if(pveEasyGame.hasWon(0))
+                        if(pveEasyGame.done == true)
                         {
-                            gameActive = false;
-                            cout << pveEasyGame << endl;
-                            cout << "Player 1 has won!";
+                            if(pveEasyGame.hasWon(1))
+                            {
+                                gameActive = false;
+                                cout << pveEasyGame << endl;
+                                cout << "Player 2 has won!";
+                            }
+                            else if(pveEasyGame.hasWon(0)) 
+                            {
+                                gameActive = false;
+                                cout << pveEasyGame << endl;
+                                cout << "Player 1 has won!";
+                            }
+                            else
+                            {
+                                cout << "It is a draw." << endl;
+                                gameActive = false;
+                            }
                         }
                         if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
                         {
@@ -181,11 +195,25 @@ int main()
                         int y = (int) stoi(theMove.substr(3, 1));
                         pveHardGame.play(x, y);
                         //std::cout << "NO SEGEMENTATION FAULT HERE.";
-                        if(pveHardGame.hasWon(0))
+                        if(pveHardGame.done == true)
                         {
-                            gameActive = false;
-                            cout << pveHardGame << endl;
-                            cout << "Player 1 has won!";
+                            if(pveHardGame.hasWon(1))
+                            {
+                                gameActive = false;
+                                cout << pveHardGame << endl;
+                                cout << "Player 2 has won!";
+                            }
+                            else if(pveHardGame.hasWon(0)) 
+                            {
+                                gameActive = false;
+                                cout << pveHardGame << endl;
+                                cout << "Player 1 has won!";
+                            }
+                            else
+                            {
+                                cout << "It is a draw." << endl;
+                                gameActive = false;
+                            }
                         }
                         //std::cout << "NO SEGEMENTATION FAULT HERE.";
                         if(pveHardGame.turnCount % 2 == (playerNum) % 2)
