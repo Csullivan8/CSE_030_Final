@@ -116,7 +116,7 @@ int main()
                         {
                             gameActive = false;
                             cout << pveEasyGame << endl;
-                            cout << "Player " << 0 << " has won!";
+                            cout << "Player 1 has won!";
                         }
                         if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
                         {
@@ -126,7 +126,7 @@ int main()
                             {
                             gameActive = false;
                             cout << pveEasyGame << endl;
-                            cout << "Player " << 1 << " has won!";
+                            cout << "Player 2 has won!";
                             }
                             else if(pveEasyGame.hasWon(0)) {}
                             else
@@ -138,7 +138,13 @@ int main()
                             {
                                 gameActive = false;
                                 cout << pveEasyGame << endl;
-                                cout << "Player " << 1 << " has won!";
+                                cout << "Player 2 has won!";
+                            }
+                            if(pveEasyGame.hasWon(0))
+                            {
+                                gameActive = false;
+                                cout << pveEasyGame << endl;
+                                cout << "Player 1 has won!";
                             }
                         }
                     }
@@ -179,7 +185,7 @@ int main()
                         {
                             gameActive = false;
                             cout << pveHardGame << endl;
-                            cout << "Player " << 0 << " has won!";
+                            cout << "Player 1 has won!";
                         }
                         //std::cout << "NO SEGEMENTATION FAULT HERE.";
                         if(pveHardGame.turnCount % 2 == (playerNum) % 2)
@@ -190,9 +196,14 @@ int main()
                             {
                                 gameActive = false;
                                 cout << pveHardGame << endl;
-                                cout << "Player " << ((playerNum - 1) % 2) + 1<< " has won!";
+                                cout << "Player 2 has won!";
                             }
-                            else if(pveHardGame.hasWon(0)) {}
+                            else if(pveHardGame.hasWon(0)) 
+                            {
+                                gameActive = false;
+                                cout << pveHardGame << endl;
+                                cout << "Player 1 has won!";
+                            }
                             else
                             {
                                 cout << "It is a draw." << endl;
@@ -202,7 +213,13 @@ int main()
                             {
                                 gameActive = false;
                                 cout << pveHardGame << endl;
-                                cout << "Player " << 1 << " has won!";
+                                cout << "Player 2 has won!";
+                            }
+                            if(pveHardGame.hasWon(0))
+                            {
+                                gameActive = false;
+                                cout << pveHardGame << endl;
+                                cout << "Player 1 has won!";
                             }
                         }
                     }
