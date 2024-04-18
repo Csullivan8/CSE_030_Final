@@ -3,6 +3,107 @@
 
 #include "GameState.h"
 
+Vec* CanWin(int who, Vec* origin, GameState theGame)
+{
+    who = (who + 1) % 2;
+    Vec* betterMove = new Vec();
+    betterMove->set(*origin);
+
+    int currentStreak = 0;
+    Vec* canGoHere = new Vec();
+    //check for rows
+    for(int b = 0; b < theGame.size; b++)
+    {
+        canGoHere->set(-1, -1);
+        for(int a = 0; a < theGame.size; a++)
+        {
+            if(theGame.grid[a][b] == who)
+            {
+                currentStreak++;
+            }
+            else if(theGame.grid[a][b] == -1)
+            {
+                canGoHere->set(a, b);
+            }
+        }
+        if(currentStreak + 1 == theGame.size && canGoHere->x != -1)
+        {
+            betterMove->set(*canGoHere);
+            delete canGoHere;
+            return betterMove;
+        }
+        currentStreak = 0;
+        std::cout << *betterMove << std::endl;
+    }
+    //check for Columns
+    for(int a = 0; a < theGame.size; a++)
+    {
+        canGoHere->set(-1, -1);
+        for(int b = 0; b < theGame.size; b++)
+        {
+            if(theGame.grid[a][b] == who)
+            {
+                currentStreak++;
+            }
+            else if(theGame.grid[a][b] == -1)
+            {
+                canGoHere->set(a, b);
+            }
+        }
+        if(currentStreak + 1 == theGame.size && canGoHere->x != -1)
+        {
+            betterMove->set(*canGoHere);
+            delete canGoHere;
+            return betterMove;
+        }
+        //std::cout << *betterMove << std::endl;
+        currentStreak = 0;
+    }
+    //currentStreak = 0;
+    //check diaognals
+    canGoHere->set(-1, -1);
+    for(int a = 0; a < theGame.size; a++)
+    {
+        if(theGame.grid[a][a] == who)
+        {
+            currentStreak++;
+        }
+        else if(theGame.grid[a][a] == -1)
+        {
+            canGoHere->set(a, a);
+        }
+    }
+    if(currentStreak + 1 == theGame.size && canGoHere->x != -1)
+    {
+        betterMove->set(*canGoHere);
+        delete canGoHere;
+        return betterMove;
+    }
+    currentStreak = 0;
+    canGoHere->set(-1, -1);
+    for(int a = 0; a < theGame.size; a++)
+    {
+        if(theGame.grid[(theGame.size - 1) - a][a] == who)
+        {
+            currentStreak++;
+        }
+        else if(theGame.grid[(theGame.size - 1) - a][a] == -1)
+        {
+            canGoHere->set((theGame.size - 1) - a, a);
+        }
+    }
+    if(currentStreak + 1 == theGame.size && canGoHere->x != -1)
+    {
+        betterMove->set(*canGoHere);
+        delete canGoHere;
+        return betterMove;
+    }
+    
+    delete canGoHere;
+
+    return betterMove;
+}
+
 Vec* CornerBlock(int who , Vec* origin, GameState theGame)
 {
     Vec* betterMove = new Vec();
@@ -10,22 +111,36 @@ Vec* CornerBlock(int who , Vec* origin, GameState theGame)
 
     if(theGame.turnCount == 1 && theGame.size == 3)
     {
-        if(theGame.grid[2][2] == 0)
+        if(theGame.grid[2][2] == who)
         {
-            betterMove->set(0, 0);
+            betterMove->set(1, 1);
         }
-        else if(theGame.grid[0][0] == 0)
+        else if(theGame.grid[0][0] == who)
         {
-            betterMove->set(2, 2);
+            betterMove->set(1, 1);
         }
-        else if(theGame.grid[2][0] == 0)
+        else if(theGame.grid[2][0] == who)
         {
-            betterMove->set(0, 2);
+            betterMove->set(1, 1);
         }
-        else if(theGame.grid[0][2] == 0)
+        else if(theGame.grid[0][2] == who)
         {
-            betterMove->set(2, 0);
+            betterMove->set(1, 1);
         }
+        
+    }
+    else if(theGame.turnCount == 0 && theGame.size == 3)
+    {
+        betterMove->set(1, 1);
+    }
+    else if(theGame.turnCount == 3 && theGame.size == 3)
+    {
+        if(theGame.grid[0][1] == -1)
+            betterMove->set(0, 1);
+        else if(theGame.grid[1][0] == -1)
+            betterMove->set(1, 0);
+        else if(theGame.grid[1][2] == -1)
+            betterMove->set(1, 2);
     }
 
     return betterMove;
@@ -53,7 +168,7 @@ Vec* LongestPath(int who , Vec* origin, GameState theGame)
             {
                 currentStreak++;
             }
-            else if(theGame.grid[a][b] == 1) // should be ((who + 1) % 2)
+            else if(theGame.grid[a][b] == (who) % 2) // should be ((who + 1) % 2)
             {
                 currentStreak = -999;
             }
@@ -80,7 +195,7 @@ Vec* LongestPath(int who , Vec* origin, GameState theGame)
             {
                 currentStreak++;
             }
-            else if(theGame.grid[a][b] == 1) // should be ((who + 1) % 2)
+            else if(theGame.grid[a][b] == (who) % 2) // should be ((who + 1) % 2)
             {
                 currentStreak = -999;
             }
@@ -106,7 +221,7 @@ Vec* LongestPath(int who , Vec* origin, GameState theGame)
         {
             currentStreak++;
         }
-        else if(theGame.grid[a][a] == 1) // should be ((who + 1) % 2)
+        else if(theGame.grid[a][a] == (who) % 2) // should be ((who + 1) % 2)
         {
             currentStreak = -999;
         }
@@ -131,7 +246,7 @@ Vec* LongestPath(int who , Vec* origin, GameState theGame)
         {
             currentStreak++;
         }
-        else if(theGame.grid[(theGame.size - 1) - a][a] == 1) // should be ((who + 1) % 2)
+        else if(theGame.grid[(theGame.size - 1) - a][a] == (who) % 2) // should be ((who + 1) % 2)
         {
             currentStreak = -999;
         }
@@ -146,13 +261,13 @@ Vec* LongestPath(int who , Vec* origin, GameState theGame)
         longestStreak = currentStreak;
     }
     std::cout << *betterMove << std::endl;
-
+    
     delete canGoHere;
 
     return betterMove;
 }
 
-GameState EnemyPlayBestMove(GameState theGame, int whichPlayer)
+GameState EnemyPlayBestMove(GameState theGame)
 {
     //then move somewhere random
     Vec* move = new Vec(0, 0);
@@ -172,13 +287,13 @@ GameState EnemyPlayBestMove(GameState theGame, int whichPlayer)
     }
 
     //then check if we can block the longest streak from enemy (2 or more)
-
-    move->set(*LongestPath(0, move, theGame));
+    move->set(*LongestPath((theGame.turnCount - 1) % 2, move, theGame));
 
     //check if player went in a corner to go in an opposite corner
-    move->set(*CornerBlock(0, move, theGame));
+    move->set(*CornerBlock((theGame.turnCount - 1) % 2, move, theGame));
 
     //first check if we can win
+    move->set(*CanWin((theGame.turnCount - 1) % 2, move, theGame));
     //LongestPath(1, move, theGame);
 
     theGame.play(move->x, move->y);

@@ -2,6 +2,7 @@
 #include <istream>
 #include <string>
 #include <system_error>
+#include <cctype>
 #include "GameState.h"
 #include "EnemyAI.h"
 
@@ -92,6 +93,14 @@ int main()
                 {
                     GameState pveEasyGame(sizeBoard);
                     string temp;
+                    int playerNum;
+                    //ask if player wants to go first
+                    cout << "Would you like to player 1 or 2? (1 or 2)" << endl;
+                    cin >> playerNum;
+                    if(playerNum == 2)
+                    {
+                        pveEasyGame = EnemyPlayRandomMove(pveEasyGame);
+                    }
                     getline(cin, temp);
                     while(gameActive)
                     {
@@ -109,7 +118,7 @@ int main()
                             cout << pveEasyGame << endl;
                             cout << "Player " << 0 << " has won!";
                         }
-                        if(pveEasyGame.currentTurn == 1)
+                        if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
                         {
                             if(pveEasyGame.done == false)
                                 pveEasyGame = EnemyPlayRandomMove(pveEasyGame);
@@ -146,6 +155,14 @@ int main()
                 {
                     GameState pveHardGame(sizeBoard);
                     string temp;
+                    int playerNum;
+                    //ask if player wants to go first
+                    cout << "Would you like to player 1 or 2? (1 or 2)" << endl;
+                    cin >> playerNum;
+                    if(playerNum == 2)
+                    {
+                        pveHardGame = EnemyPlayBestMove(pveHardGame);
+                    }
                     getline(cin, temp);
                     while(gameActive)
                     {     
@@ -165,7 +182,7 @@ int main()
                             cout << "Player " << 0 << " has won!";
                         }
                         //std::cout << "NO SEGEMENTATION FAULT HERE.";
-                        if(pveHardGame.currentTurn == 1)
+                        if(pveHardGame.turnCount % 2 == (playerNum) % 2)
                         {
                             if(pveHardGame.done == false)
                                 pveHardGame = EnemyPlayBestMove(pveHardGame);
@@ -173,7 +190,7 @@ int main()
                             {
                                 gameActive = false;
                                 cout << pveHardGame << endl;
-                                cout << "Player " << 1 << " has won!";
+                                cout << "Player " << ((playerNum - 1) % 2) + 1<< " has won!";
                             }
                             else if(pveHardGame.hasWon(0)) {}
                             else
