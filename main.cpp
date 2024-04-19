@@ -67,17 +67,25 @@ int main()
                         int x = (int) stoi(theMove.substr(0, 1)); // add trim maybe
                         int y = (int) stoi(theMove.substr(3, 1));
                         pvpGame.play(x, y);
-                        if(pvpGame.hasWon(0))
+                        if(pvpGame.done == true)
                         {
-                            gameActive = false;
-                            cout << pvpGame << endl;
-                            cout << "Player " << 0 << " has won!";
-                        }
-                        else if(pvpGame.hasWon(1))
-                        {
-                            gameActive = false;
-                            cout << pvpGame << endl;
-                            cout << "Player " << 1 << " has won!";
+                            if(pvpGame.hasWon(0))
+                            {
+                                gameActive = false;
+                                cout << pvpGame << endl;
+                                cout << "Player " << 0 << " has won!";
+                            }
+                            else if(pvpGame.hasWon(1))
+                            {
+                                gameActive = false;
+                                cout << pvpGame << endl;
+                                cout << "Player " << 1 << " has won!";
+                            }
+                            else
+                            {
+                                cout << "It is a draw." << endl;
+                                gameActive = false;
+                            }
                         }
                     }
                 }
@@ -132,7 +140,7 @@ int main()
                                 gameActive = false;
                             }
                         }
-                        if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
+                        else if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
                         {
                             if(pveEasyGame.done == false)
                                 pveEasyGame = EnemyPlayRandomMove(pveEasyGame);
