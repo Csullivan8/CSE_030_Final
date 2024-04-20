@@ -78,7 +78,7 @@ int ReadPoints(string playerFile){
 
 
 void pvp(int sizeBoard, bool gameActive){
-    
+    system("clear");
     if(sizeBoard < 1)
     {
         cout << "Error. Enter a valid input";
@@ -99,22 +99,20 @@ void pvp(int sizeBoard, bool gameActive){
             pvpGame.play(x, y);
             if(pvpGame.done==true)
             {
+                gameActive = false;
                 if(pvpGame.hasWon(0))
                 {
-                    gameActive = false;
                     cout << pvpGame << endl;
-                    cout << "Player " << 0 << " has won!";
+                    cout << "Player " << 1 << " has won!";
                 }
                 else if(pvpGame.hasWon(1))
                 {
-                    gameActive = false;
                     cout << pvpGame << endl;
-                    cout << "Player " << 1 << " has won!";
+                    cout << "Player " << 2 << " has won!";
                 }
                 else
                 {
                     cout << "It is a draw." << endl;
-                    gameActive = false;
                 } 
             }  
         }
@@ -122,7 +120,7 @@ void pvp(int sizeBoard, bool gameActive){
 }
 
 void EasyAi(int sizeBoard, bool gameActive){
-
+    system("clear");
     if(sizeBoard < 1)
     {
         cout << "Error. Enter a valid input";
@@ -135,6 +133,7 @@ void EasyAi(int sizeBoard, bool gameActive){
         //ask if player wants to go first
         cout << "Would you like to be player 1 or 2? (1 or 2)" << endl;
         cin >> playerNum;
+        system("clear");
         if(playerNum == 2)
         {
             pveEasyGame = EnemyPlayRandomMove(pveEasyGame);
@@ -152,22 +151,23 @@ void EasyAi(int sizeBoard, bool gameActive){
             pveEasyGame.play(x, y);
             if(pveEasyGame.done == true)
             {
+                gameActive = false;
                 if(pveEasyGame.hasWon(1))
                 {
-                    gameActive = false;
+                    system("clear");
                     cout << pveEasyGame << endl;
                     cout << "Player 2 has won!" << endl;
                 }
                 else if(pveEasyGame.hasWon(0)) 
                 {
-                    gameActive = false;
+                    system("clear");
                     cout << pveEasyGame << endl;
                     cout << "Player 1 has won!" << endl;
                 }
                 else
                 {
+                    system("clear");
                     cout << "It is a draw." << endl;
-                    gameActive = false;
                 }
             }
             if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
@@ -177,24 +177,28 @@ void EasyAi(int sizeBoard, bool gameActive){
                 else if(pveEasyGame.hasWon(1))
                 {
                     gameActive = false;
+                    system("clear");
                     cout << pveEasyGame << endl;
                     cout << "Player 2 has won!";
                 }
                 else if(pveEasyGame.hasWon(0)) {}
                 else
                 {
-                    cout << "It is a draw." << endl;
                     gameActive = false;
+                    system("clear");
+                    cout << "It is a draw." << endl;
                 }
                 if(pveEasyGame.hasWon(1))
                 {
                     gameActive = false;
+                    system("clear");
                     cout << pveEasyGame << endl;
                     cout << "Player 2 has won!" << endl;
                 }
                 if(pveEasyGame.hasWon(0))
                 {
                     gameActive = false;
+                    system("clear");
                     cout << pveEasyGame << endl;
                     cout << "Player 1 has won!" << endl;
                 }
@@ -212,6 +216,7 @@ void EasyAi(int sizeBoard, bool gameActive){
 
 }
 void HardAi(int sizeBoard, bool gameActive){
+    system("clear");
     if(sizeBoard < 1)
     {
         cout << "Error. Enter a valid input";
@@ -224,6 +229,7 @@ void HardAi(int sizeBoard, bool gameActive){
         //ask if player wants to go first
         cout << "Would you like to player 1 or 2? (1 or 2)" << endl;
         cin >> playerNum;
+        system("clear");
         if(playerNum == 2)
         {
             pveHardGame = EnemyPlayBestMove(pveHardGame);
@@ -243,57 +249,65 @@ void HardAi(int sizeBoard, bool gameActive){
             //std::cout << "NO SEGEMENTATION FAULT HERE.";
             if(pveHardGame.done == true)
             {
-                system("clear");
                 if(pveHardGame.hasWon(1))
                 {
+                    system("clear");
                     gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 2 has won!" << endl;
                 }
                 else if(pveHardGame.hasWon(0)) 
                 {
+                    system("clear");
                     gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 1 has won!" << endl;
                 }
                 else
                 {
-                    cout << "It is a draw." << endl;
+                    system("clear");
                     gameActive = false;
+                    cout << "It is a draw." << endl;
                 }
             }
             //std::cout << "NO SEGEMENTATION FAULT HERE.";
             if(pveHardGame.turnCount % 2 == (playerNum) % 2)
             {
-                system("clear");
                 if(pveHardGame.done == false)
+                {
                     pveHardGame = EnemyPlayBestMove(pveHardGame);
+                    system("clear");
+                }
                 else if(pveHardGame.hasWon(1))
                 {
+                    system("clear");
                     gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 2 has won!" << endl;
                 }
                 else if(pveHardGame.hasWon(0)) 
                 {
+                    system("clear");
                     gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 1 has won!" << endl;
                 }
                 else
                 {
+                    system("clear");
                     cout << "It is a draw." << endl;
                     gameActive = false;
                 }
-                system("clear");
                 if(pveHardGame.hasWon(1))
                 {
+                    system("clear");
                     gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 2 has won!" << endl;
                 }
                 if(pveHardGame.hasWon(0))
                 {
+                    system("clear");
                     gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 1 has won!" << endl;
