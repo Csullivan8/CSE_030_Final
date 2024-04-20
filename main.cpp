@@ -5,6 +5,7 @@
 #include <cctype>
 #include "GameState.h"
 #include "EnemyAI.h"
+#include "GameFunctions.h"
 
 using namespace std;
 
@@ -18,21 +19,15 @@ int main()
     bool looping = true;
     while(looping == true)
     {
-        /*
-
-        1: Instructions
-        2: pvp mode
-        3: weak AI
-        4: strong AI
-        5: quit
-
-        */
+        
         Menu();
         int input;
         cin >> input;
+        system("clear");
         cout << endl << endl;
         int sizeBoard;
         bool gameActive = true;
+        
         switch(input)
         {
             case 1:
