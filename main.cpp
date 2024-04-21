@@ -55,6 +55,10 @@ int main()
                 PressEnter();
                 break;
             case 5:
+                PointOption();
+                PressEnter(1);
+                break;
+            case 6:
                 cout << "Goodbye!";
                 looping = false;
                 break;
