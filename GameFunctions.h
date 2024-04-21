@@ -12,7 +12,7 @@
 using namespace std;
 
 void PressEnter(int num=0){
-    std::cout << "press Enter: ";
+    std::cout << "\n\npress Enter: ";
     if(num == 1){
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
@@ -27,7 +27,8 @@ void Menu(){
     cout << "2: pvp mode" << endl;
     cout << "3: weak AI" << endl;
     cout << "4: strong AI" << endl;
-    cout << "5: quit" << endl << endl;
+    court << "5: Wins Collected" << endl;
+    cout << "6: quit" << endl << endl;
     cout << "Choose an Option to Continue." << endl;
 }
 
@@ -65,18 +66,21 @@ int ReadPoints(string playerFile){
     }
     return Total_points;
 }
-// void points(bool player1, bool player2, string section){
-//     if(player1){
-//        Storepoints(section+"player1");
-//         cout << "Total points:" << ReadPoints(section+"player1") << endl;
-        
-//     }if(player2){
-//         Storepoints(section+"player2");
-//         cout << "Total points:" << ReadPoints(section + "player2") << endl;
-//     }
-// }
-
-
+//adds points according to specific files and players
+void points(bool gameActive, bool player, string file){
+    if(gameActive == false && player){
+        Storepoints(file);
+    }
+}
+int DisplayPoints(string file){
+    return ReadPoints(file);
+}
+void PointOption(){
+    cout << "           player 1       player 2";
+    cout << "\n\nPvP mode:    " << DisplayPoints("player1") << "               " << DisplayPoints("player2");
+    cout << "\n\nEasy mode:   " << DisplayPoints("Easyplayer1") << "               " << DisplayPoints("Easyplayer2");
+    cout << "\n\nHard mode:   " << DisplayPoints("HardPlayer1") << "               " << DisplayPoints("HardPlayer2") << "\n";
+}
 void pvp(int sizeBoard, bool gameActive){
     system("clear");
     if(sizeBoard < 1)
@@ -94,6 +98,7 @@ void pvp(int sizeBoard, bool gameActive){
             cout << "Enter where you would like to go in \"row, column\" format!" << endl;
             string theMove;
             getline(cin, theMove);
+            system("clear");
             int x = (int) stoi(theMove.substr(0, 1)); // add trim maybe
             int y = (int) stoi(theMove.substr(3, 1));
             pvpGame.play(x, y);
@@ -113,7 +118,9 @@ void pvp(int sizeBoard, bool gameActive){
                 else
                 {
                     cout << "It is a draw." << endl;
-                } 
+                }
+                points(gameActive, pvpGame.hasWon(0), "player1");
+                points(gameActive, pvpGame.hasWon(1), "player2");
             }  
         }
     }
@@ -137,6 +144,7 @@ void EasyAi(int sizeBoard, bool gameActive){
         if(playerNum == 2)
         {
             pveEasyGame = EnemyPlayRandomMove(pveEasyGame);
+            system("clear");
         }
         getline(cin, temp);
         while(gameActive)
@@ -146,6 +154,7 @@ void EasyAi(int sizeBoard, bool gameActive){
             cout << "Enter where you would like to go in \"row, column\" format!" << endl;
             string theMove;
             getline(cin, theMove);
+            system("clear");
             int x = (int) stoi(theMove.substr(0, 1)); // add trim maybe
             int y = (int) stoi(theMove.substr(theMove.find(",") + 2, 1));
             pveEasyGame.play(x, y);
@@ -173,7 +182,9 @@ void EasyAi(int sizeBoard, bool gameActive){
             if(pveEasyGame.turnCount % 2 == (playerNum) % 2)
             {
                 if(pveEasyGame.done == false)
+                {
                     pveEasyGame = EnemyPlayRandomMove(pveEasyGame);
+                }
                 else if(pveEasyGame.hasWon(1))
                 {
                     gameActive = false;
@@ -203,17 +214,10 @@ void EasyAi(int sizeBoard, bool gameActive){
                     cout << "Player 1 has won!" << endl;
                 }
             }
+            points(gameActive, pveEasyGame.hasWon(0), "Easyplayer1");
+            points(gameActive, pveEasyGame.hasWon(1), "Easyplayer2");
         }
-        // if(pveEasyGame.hasWon(0)){
-        //     Storepoints("Easyplayer1");
-        //     cout << "Total points: " << ReadPoints("Easyplayer1") << endl;
-        // }if(pveEasyGame.hasWon(1)){
-        //     Storepoints("Easyplayer2");
-        //     cout << "Total points: " << ReadPoints("Easyplayer2") << endl;
-        // }
-        
     }
-
 }
 void HardAi(int sizeBoard, bool gameActive){
     system("clear");
@@ -249,24 +253,20 @@ void HardAi(int sizeBoard, bool gameActive){
             //std::cout << "NO SEGEMENTATION FAULT HERE.";
             if(pveHardGame.done == true)
             {
+                system("clear");
+                gameActive = false;
                 if(pveHardGame.hasWon(1))
                 {
-                    system("clear");
-                    gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 2 has won!" << endl;
                 }
                 else if(pveHardGame.hasWon(0)) 
                 {
-                    system("clear");
-                    gameActive = false;
                     cout << pveHardGame << endl;
                     cout << "Player 1 has won!" << endl;
                 }
                 else
                 {
-                    system("clear");
-                    gameActive = false;
                     cout << "It is a draw." << endl;
                 }
             }
@@ -312,6 +312,8 @@ void HardAi(int sizeBoard, bool gameActive){
                     cout << pveHardGame << endl;
                     cout << "Player 1 has won!" << endl;
                 }
+                points(gameActive, pveHardGame.hasWon(0), "HardPlayer1");
+                points(gameActive, pveHardGame.hasWon(1), "HardPlayer2");
             }
         }             
     }
