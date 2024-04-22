@@ -1,6 +1,10 @@
 #ifndef GAME_STATE_H
 #define GAME_STATE_H
 
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define RESET "\033[0m"
+
 #include <iostream>
 
 struct Vec
@@ -301,15 +305,19 @@ std::ostream& operator<<(std::ostream& os, const GameState& state)
         for (int j = 0; j < state.size; j++)
         {
             char c = ' ';
+            std::string color = RESET;
+            // std::string color = RESET;
             if (state.grid[i][j] == 0)
             {
                 c = 'X';
+                color = RED;
             }
             else if (state.grid[i][j] == 1)
             {
                 c = 'O';
+                color = GREEN;
             }
-            os << "| " << c << " ";
+            os << "| " << color << c << RESET << " ";
             if (j == state.size - 1) os << "|";
         }
         os << std::endl << "   ";
