@@ -63,7 +63,7 @@ int main()
                 PressEnter(1);
                 break;
             case 7:
-                cout << "Goodbye!";
+                cout << "Goodbye!\n\n";
                 looping = false;
                 break;
             default:
