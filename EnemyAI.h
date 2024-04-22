@@ -292,7 +292,7 @@ GameState EnemyPlayBestMove(GameState theGame)
     //check if player went in a corner to go in an opposite corner
     move->set(*CornerBlock((theGame.turnCount - 1) % 2, move, theGame));
 
-    //first check if we can stop player win
+    //second check if we can stop player win
     move->set(*CanWin((theGame.turnCount - 1) % 2, move, theGame));
 
     //first check if we can win

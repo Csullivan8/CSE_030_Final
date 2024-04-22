@@ -13,8 +13,9 @@ int main()
 {
     system("clear");
     GameState game;
-
-    
+    game.play(0, 0);
+    game.play(1, 1);
+    cout << game << endl;
     cout << "EXTREME TIC TAC TOE!!!!";
     bool looping = true;
     while(looping == true)
