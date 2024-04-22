@@ -8,6 +8,7 @@
 #include "GameState.h"
 #include "EnemyAI.h"
 #include <limits>
+#include <ctime>
 
 using namespace std;
 
@@ -140,10 +141,17 @@ void pvp(int sizeBoard, bool gameActive){
         GameState pvpGame(sizeBoard);
         string temp;
         getline(cin, temp);
+        time_t loopStartTime = time(0);
+        time_t moveStartTime = loopStartTime;
         while(gameActive)
         {
             cout << pvpGame << endl;
             cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
+            if(moveStartTime != loopStartTime)
+            {
+                cout << "The last player took " << difftime(time(0), moveStartTime) << " seconds." << endl;
+            }
+            moveStartTime = time(0);
             cout << "Enter where you would like to go in \"row, column\" format!" << endl;
             string theMove;
             getline(cin, theMove);
@@ -172,6 +180,7 @@ void pvp(int sizeBoard, bool gameActive){
                 points(gameActive, pvpGame.hasWon(1), "player2");
             }  
         }
+        cout << "The game took a combined " << difftime(time(0), loopStartTime) << " seconds." << endl;     
     }
 }
 
@@ -196,10 +205,17 @@ void EasyAi(int sizeBoard, bool gameActive){
             system("clear");
         }
         getline(cin, temp);
+        time_t loopStartTime = time(0);
+        time_t moveStartTime = loopStartTime;
         while(gameActive)
         {
             cout << pveEasyGame << endl;
             cout << "Your turn!" << endl;
+            if(moveStartTime != loopStartTime)
+            {
+                cout << "The last player took " << difftime(time(0), moveStartTime) << " seconds." << endl;
+            }
+            moveStartTime = time(0);
             cout << "Enter where you would like to go in \"row, column\" format!" << endl;
             string theMove;
             getline(cin, theMove);
@@ -266,6 +282,7 @@ void EasyAi(int sizeBoard, bool gameActive){
             points(gameActive, pveEasyGame.hasWon(0), "Easyplayer1");
             points(gameActive, pveEasyGame.hasWon(1), "Easyplayer2");
         }
+        cout << "The game took a combined " << difftime(time(0), loopStartTime) << " seconds." << endl;     
     }
 }
 void HardAi(int sizeBoard, bool gameActive){
@@ -289,10 +306,17 @@ void HardAi(int sizeBoard, bool gameActive){
             system("clear");
         }
         getline(cin, temp);
+        time_t loopStartTime = time(0);
+        time_t moveStartTime = loopStartTime;
         while(gameActive)
         {     
             cout << pveHardGame << endl;
             cout << "Your turn! EXETREME VERSION" << endl;
+            if(moveStartTime != loopStartTime)
+            {
+                cout << "The last player took " << difftime(time(0), moveStartTime) << " seconds." << endl;
+            }
+            moveStartTime = time(0);
             cout << "Enter where you would like to go in \"row, column\" format!" << endl;
             string theMove;
             getline(cin, theMove);
@@ -364,7 +388,8 @@ void HardAi(int sizeBoard, bool gameActive){
                 points(gameActive, pveHardGame.hasWon(0), "HardPlayer1");
                 points(gameActive, pveHardGame.hasWon(1), "HardPlayer2");
             }
-        }             
+        }
+        cout << "The game took a combined " << difftime(time(0), loopStartTime) << " seconds." << endl;             
     }
 }
                         
