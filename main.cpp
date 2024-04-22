@@ -59,6 +59,10 @@ int main()
                 PressEnter(1);
                 break;
             case 6:
+                ClearpointsOption();
+                PressEnter(1);
+                break;
+            case 7:
                 cout << "Goodbye!";
                 looping = false;
                 break;
