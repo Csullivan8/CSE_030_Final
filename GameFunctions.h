@@ -29,7 +29,7 @@ void Menu(){
     cout << "4: strong AI" << endl;
     cout << "5: Wins Collected" << endl;
     cout << "6: Erase Wins Data" << endl;
-    cout << "6: quit" << endl << endl;
+    cout << "7: quit" << endl << endl;
     cout << "Choose an Option to Continue." << endl;
 }
 
@@ -124,12 +124,6 @@ void ClearPoints(){
     file3.close();
     file4.close();
     file5.close();
-}
-void PointOption(){
-    cout << "           player 1       player 2";
-    cout << "\n\nPvP mode:    " << DisplayPoints("player1") << "               " << DisplayPoints("player2");
-    cout << "\n\nEasy mode:   " << DisplayPoints("Easyplayer1") << "               " << DisplayPoints("Easyplayer2");
-    cout << "\n\nHard mode:   " << DisplayPoints("HardPlayer1") << "               " << DisplayPoints("HardPlayer2") << "\n";
 }
 void ClearpointsOption(){
     ClearPoints();
