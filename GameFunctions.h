@@ -27,7 +27,8 @@ void Menu(){
     cout << "2: pvp mode" << endl;
     cout << "3: weak AI" << endl;
     cout << "4: strong AI" << endl;
-    court << "5: Wins Collected" << endl;
+    cout << "5: Wins Collected" << endl;
+    cout << "6: Erase Wins Data" << endl;
     cout << "6: quit" << endl << endl;
     cout << "Choose an Option to Continue." << endl;
 }
@@ -41,6 +42,7 @@ string Storepoints(string playerFile){
     if(file.is_open()){
         file << point << endl;
         file.close();
+        return "";
     }
     else{
         return "file can't open\n";
@@ -80,6 +82,59 @@ void PointOption(){
     cout << "\n\nPvP mode:    " << DisplayPoints("player1") << "               " << DisplayPoints("player2");
     cout << "\n\nEasy mode:   " << DisplayPoints("Easyplayer1") << "               " << DisplayPoints("Easyplayer2");
     cout << "\n\nHard mode:   " << DisplayPoints("HardPlayer1") << "               " << DisplayPoints("HardPlayer2") << "\n";
+}
+void ClearPoints(){
+    ofstream file;
+    ofstream file1;
+    ofstream file2;
+    ofstream file3;
+    ofstream file4;
+    ofstream file5;
+    file.open("player1", ios::out);
+    file1.open("player2", ios::out);
+    file2.open("Easyplayer1", ios::out);     ////////fix
+    file3.open("Easyplayer2", ios::out);
+    file4.open("HardPlayer1", ios::out);
+    file5.open("HardPlayer1", ios::out);
+    if(file.is_open()){
+        file << "";
+        if(file1.is_open()){
+            file1 << "";
+            if(file2.is_open()){
+                file2 << "";
+                if(file3.is_open()){
+                    file3 << "";
+                    if(file4.is_open()){
+                        file4 << "";
+                        if(file5.is_open()){
+                            file5 << "";
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    else{
+        cout << "files refuse to open";
+    }
+    file.close();
+    file1.close();
+    file2.close();
+    file3.close();
+    file4.close();
+    file5.close();
+}
+void PointOption(){
+    cout << "           player 1       player 2";
+    cout << "\n\nPvP mode:    " << DisplayPoints("player1") << "               " << DisplayPoints("player2");
+    cout << "\n\nEasy mode:   " << DisplayPoints("Easyplayer1") << "               " << DisplayPoints("Easyplayer2");
+    cout << "\n\nHard mode:   " << DisplayPoints("HardPlayer1") << "               " << DisplayPoints("HardPlayer2") << "\n";
+}
+void ClearpointsOption(){
+    ClearPoints();
+    PointOption();
+    cout << "\n\nAll Data Has Been Erased";
 }
 void pvp(int sizeBoard, bool gameActive){
     system("clear");
