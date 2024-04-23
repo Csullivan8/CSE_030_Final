@@ -20,7 +20,6 @@ vector<string> split(string input, char splitChar) {
       current += input[i];
     } else {
       output.push_back(current);
-      cout << current << endl;
       current = "";
     }
   }
