@@ -106,10 +106,10 @@ void ClearPoints() {
   ofstream file5;
   file.open("player1", ios::out);
   file1.open("player2", ios::out);
-  file2.open("Easyplayer1", ios::out); ////////fix
+  file2.open("Easyplayer1", ios::out); 
   file3.open("Easyplayer2", ios::out);
   file4.open("HardPlayer1", ios::out);
-  file5.open("HardPlayer1", ios::out);
+  file5.open("HardPlayer2", ios::out);
   if (file.is_open()) {
     file << "";
     if (file1.is_open()) {
