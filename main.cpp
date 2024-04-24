@@ -108,6 +108,9 @@ int main()
                 cout << "Goodbye!\n\n";
                 looping = false;
                 break;
+            case 8:
+                //timed game function
+                break;
             default:
                 cout << "Error. Enter a valid input";
                 break;
