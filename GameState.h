@@ -253,8 +253,15 @@ struct GameState
 
     bool play(int x, int y)
     {
+        if(x + 1 > size || y + 1 > size)
+        {
+            std::cout << "INVALID INPUT!" << std::endl;
+            return false;
+        }
+
         if (grid[x][y] != -1)
         {
+            std::cout << "INVALID INPUT!" << std::endl;
             return false;
         }
 
