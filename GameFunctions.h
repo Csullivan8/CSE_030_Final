@@ -159,13 +159,17 @@ void pvp(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-      moveStartTime = time(0);
+      bool hasErrored = false;
       while (!acceptedInput) {
         cout << pvpGame << endl;
         cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
         }
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
@@ -185,6 +189,7 @@ void pvp(int sizeBoard, bool gameActive) {
         } else {
           cout << "Please enter a valid input!" << endl;
         }
+        hasErrored = true;
       }
       pvpGame.play(x, y);
       if (pvpGame.done == true) {
@@ -231,13 +236,17 @@ void EasyAi(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-      moveStartTime = time(0);
+      bool hasErrored = false;
       while (!acceptedInput) {
         cout << pveEasyGame << endl;
         cout << "Your turn!" << endl;
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
         }
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
@@ -257,6 +266,7 @@ void EasyAi(int sizeBoard, bool gameActive) {
         } else {
           cout << "Please enter a valid input!" << endl;
         }
+        hasErrored = true;
       }
       pveEasyGame.play(x, y);
       if (pveEasyGame.done == true) {
@@ -332,13 +342,17 @@ void HardAi(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-      moveStartTime = time(0);
+      bool hasErrored = false;
       while (!acceptedInput) {
         cout << pveHardGame << endl;
         cout << "Your turn! EXETREME VERSION" << endl;
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
         }
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
@@ -357,6 +371,7 @@ void HardAi(int sizeBoard, bool gameActive) {
         } else {
           cout << "Please enter a valid input!" << endl;
         }
+        hasErrored = true;
       }
       pveHardGame.play(x, y);
       // std::cout << "NO SEGEMENTATION FAULT HERE.";
