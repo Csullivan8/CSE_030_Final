@@ -10,6 +10,13 @@
 #include <string>
 #include <vector>
 
+#define RED "\033[31m"
+#define GREEN "\033[33m"
+#define YELLOW "\033[34m"
+#define BLUE "\033[35m"
+#define MAGENTA "\033[36m"
+#define RESET "\033[0m"
+
 using namespace std;
 
 vector<string> split(string input, char splitChar) {
@@ -25,6 +32,10 @@ vector<string> split(string input, char splitChar) {
   }
   output.push_back(current);
   return output;
+}
+
+void printWinMessage(int player){
+    cout << RED << "P" << YELLOW << "l" << GREEN << "a" << BLUE << "y" << MAGENTA << "e" << RED << "r " << YELLOW << player << " " << GREEN << "h" << BLUE << "a" << MAGENTA << "s " << RED << "w" << YELLOW << "o" << GREEN << "n" << BLUE << "!" << RESET << endl;
 }
 
 void PressEnter(int num = 0) {
@@ -196,13 +207,13 @@ void pvp(int sizeBoard, bool gameActive) {
       if (pvpGame.done == true) {
         gameActive = false;
         if (pvpGame.hasWon(0)) {
-          cout << pvpGame << endl;
-          cout << "Player " << 1 << " has won!";
+            cout << pvpGame << endl;
+            printWinMessage(1);
         } else if (pvpGame.hasWon(1)) {
-          cout << pvpGame << endl;
-          cout << "Player " << 2 << " has won!";
+            cout << pvpGame << endl;
+            printWinMessage(1);
         } else {
-          cout << "It is a draw." << endl;
+            cout << "It is a draw." << endl;
         }
         points(gameActive, pvpGame.hasWon(0), "player1");
         points(gameActive, pvpGame.hasWon(1), "player2");
@@ -276,11 +287,11 @@ void EasyAi(int sizeBoard, bool gameActive) {
         if (pveEasyGame.hasWon(1)) {
           system("clear");
           cout << pveEasyGame << endl;
-          cout << "Player 2 has won!" << endl;
+          printWinMessage(1);
         } else if (pveEasyGame.hasWon(0)) {
           system("clear");
           cout << pveEasyGame << endl;
-          cout << "Player 1 has won!" << endl;
+          printWinMessage(1);
         } else {
           system("clear");
           cout << "It is a draw." << endl;
@@ -293,7 +304,7 @@ void EasyAi(int sizeBoard, bool gameActive) {
           gameActive = false;
           system("clear");
           cout << pveEasyGame << endl;
-          cout << "Player 2 has won!";
+          printWinMessage(2);
         } else if (pveEasyGame.hasWon(0)) {
         } else {
           gameActive = false;
@@ -304,13 +315,13 @@ void EasyAi(int sizeBoard, bool gameActive) {
           gameActive = false;
           system("clear");
           cout << pveEasyGame << endl;
-          cout << "Player 2 has won!" << endl;
+          printWinMessage(2);
         }
         if (pveEasyGame.hasWon(0)) {
           gameActive = false;
           system("clear");
           cout << pveEasyGame << endl;
-          cout << "Player 1 has won!" << endl;
+          printWinMessage(1);
         }
       }
       points(gameActive, pveEasyGame.hasWon(0), "Easyplayer1");
@@ -383,10 +394,10 @@ void HardAi(int sizeBoard, bool gameActive) {
         gameActive = false;
         if (pveHardGame.hasWon(1)) {
           cout << pveHardGame << endl;
-          cout << "Player 2 has won!" << endl;
+          printWinMessage(2);
         } else if (pveHardGame.hasWon(0)) {
           cout << pveHardGame << endl;
-          cout << "Player 1 has won!" << endl;
+          printWinMessage(1);
         } else {
           cout << "It is a draw." << endl;
         }
@@ -400,12 +411,16 @@ void HardAi(int sizeBoard, bool gameActive) {
           system("clear");
           gameActive = false;
           cout << pveHardGame << endl;
-          cout << "Player 2 has won!" << endl;
+          printWinMessage(2);
+          cout << RED << "P" << YELLOW << "l" << GREEN << "a" << BLUE << "y" << MAGENTA << "e" << RED << "r " << YELLOW << "2 " << GREEN << "h" << BLUE << "a" << MAGENTA << "s " << RED << "w" << YELLOW << "o" << GREEN << "n" << BLUE << "!" << RESET << endl;
+
+
+
         } else if (pveHardGame.hasWon(0)) {
           system("clear");
           gameActive = false;
           cout << pveHardGame << endl;
-          cout << "Player 1 has won!" << endl;
+          printWinMessage(1);
         } else {
           system("clear");
           cout << "It is a draw." << endl;
@@ -415,13 +430,13 @@ void HardAi(int sizeBoard, bool gameActive) {
           system("clear");
           gameActive = false;
           cout << pveHardGame << endl;
-          cout << "Player 2 has won!" << endl;
+          printWinMessage(2);
         }
         if (pveHardGame.hasWon(0)) {
           system("clear");
           gameActive = false;
           cout << pveHardGame << endl;
-          cout << "Player 1 has won!" << endl;
+          printWinMessage(1);
         }
         points(gameActive, pveHardGame.hasWon(0), "HardPlayer1");
         points(gameActive, pveHardGame.hasWon(1), "HardPlayer2");
