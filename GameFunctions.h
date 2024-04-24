@@ -166,11 +166,12 @@ void pvp(int sizeBoard, bool gameActive) {
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
+}
           if(!hasErrored)
           {
             moveStartTime = time(0);
           }
-        }
+        
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
         string theMove;
@@ -243,11 +244,12 @@ void EasyAi(int sizeBoard, bool gameActive) {
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
+        }
           if(!hasErrored)
           {
             moveStartTime = time(0);
           }
-        }
+        
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
         string theMove;
@@ -349,11 +351,12 @@ void HardAi(int sizeBoard, bool gameActive) {
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
+        }
           if(!hasErrored)
           {
             moveStartTime = time(0);
           }
-        }
+        
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
         string theMove;
