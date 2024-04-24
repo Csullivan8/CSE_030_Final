@@ -235,14 +235,29 @@ void pvpTimed(int sizeBoard, bool gameActive) {
     getline(cin, temp);
     time_t loopStartTime = time(0);
     time_t moveStartTime = loopStartTime;
+
+      double timeLeft1 = sizeBoard;
+      double timeLeft2 = sizeBoard;
+
     while (gameActive) {
       bool acceptedInput = false;
       vector<string> splitInput;
       int x;
       int y;
+
       bool hasErrored = false;
       while (!acceptedInput) {
         cout << pvpGame << endl;
+        double fullTime = 0;
+        if(pvpGame.currentTurn % 2 == 0)
+        {
+            fullTime = timeLeft1;
+        }
+        else
+        {
+            fullTime = timeLeft2;
+        }
+        cout << "You have " << fullTime << "to make a move!" << endl;
         cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
@@ -272,6 +287,30 @@ void pvpTimed(int sizeBoard, bool gameActive) {
           cout << "Please enter a valid input!" << endl;
         }
         hasErrored = true;
+      }
+      if(pvpGame.currentTurn % 2 == 0)
+      {
+          if(difftime(time(0), moveStartTime) <= timeLeft1)
+          {
+              timeLeft1 = timeLeft1*0.75;
+          }
+          else
+          {
+              cout << "Player 1 ran out of time" << endl;
+              gameActive = false;
+          }
+      }
+      else
+      {
+          if(difftime(time(0), moveStartTime) <= timeLeft2)
+          {
+              timeLeft2 = timeLeft2*0.75;
+          }
+          else
+          {
+              cout << "Player 2 ran out of time" << endl;
+              gameActive = false;
+          }   
       }
       pvpGame.play(x, y);
       if (pvpGame.done == true) {
