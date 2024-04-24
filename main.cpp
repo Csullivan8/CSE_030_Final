@@ -109,7 +109,10 @@ int main()
                 looping = false;
                 break;
             case 8:
-                //timed game function
+                cout << "What size board would you like!" << endl;
+                cin >> sizeBoard;
+                pvpTimed(sizeBoard, gameActive);
+                PressEnter();
                 break;
             default:
                 cout << "Error. Enter a valid input";
