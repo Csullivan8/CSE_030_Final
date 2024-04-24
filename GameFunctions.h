@@ -106,10 +106,10 @@ void ClearPoints() {
   ofstream file5;
   file.open("player1", ios::out);
   file1.open("player2", ios::out);
-  file2.open("Easyplayer1", ios::out); ////////fix
+  file2.open("Easyplayer1", ios::out); 
   file3.open("Easyplayer2", ios::out);
   file4.open("HardPlayer1", ios::out);
-  file5.open("HardPlayer1", ios::out);
+  file5.open("HardPlayer2", ios::out);
   if (file.is_open()) {
     file << "";
     if (file1.is_open()) {
@@ -159,14 +159,19 @@ void pvp(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-
+      bool hasErrored = false;
       while (!acceptedInput) {
         cout << pvpGame << endl;
         cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
-        }
+}
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
+        
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
         string theMove;
@@ -185,8 +190,8 @@ void pvp(int sizeBoard, bool gameActive) {
         } else {
           cout << "Please enter a valid input!" << endl;
         }
+        hasErrored = true;
       }
-      moveStartTime = time(0);
       pvpGame.play(x, y);
       if (pvpGame.done == true) {
         gameActive = false;
@@ -232,7 +237,7 @@ void EasyAi(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-
+      bool hasErrored = false;
       while (!acceptedInput) {
         cout << pveEasyGame << endl;
         cout << "Your turn!" << endl;
@@ -240,6 +245,11 @@ void EasyAi(int sizeBoard, bool gameActive) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
         }
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
+        
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
         string theMove;
@@ -258,8 +268,8 @@ void EasyAi(int sizeBoard, bool gameActive) {
         } else {
           cout << "Please enter a valid input!" << endl;
         }
+        hasErrored = true;
       }
-      moveStartTime = time(0);
       pveEasyGame.play(x, y);
       if (pveEasyGame.done == true) {
         gameActive = false;
@@ -334,7 +344,7 @@ void HardAi(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-
+      bool hasErrored = false;
       while (!acceptedInput) {
         cout << pveHardGame << endl;
         cout << "Your turn! EXETREME VERSION" << endl;
@@ -342,6 +352,11 @@ void HardAi(int sizeBoard, bool gameActive) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
         }
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
+        
         cout << "Enter where you would like to go in \"row, column\" format!"
              << endl;
         string theMove;
@@ -359,8 +374,8 @@ void HardAi(int sizeBoard, bool gameActive) {
         } else {
           cout << "Please enter a valid input!" << endl;
         }
+        hasErrored = true;
       }
-      moveStartTime = time(0);
       pveHardGame.play(x, y);
       // std::cout << "NO SEGEMENTATION FAULT HERE.";
       if (pveHardGame.done == true) {
