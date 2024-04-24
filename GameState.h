@@ -255,13 +255,13 @@ struct GameState
     {
         if(x + 1 > size || y + 1 > size)
         {
-            std::cout << "INVALID INPUT!" << std::endl;
+            std::cout << RED << "INVALID INPUT!" << RED << std::endl;
             return false;
         }
 
         if (grid[x][y] != -1)
         {
-            std::cout << "INVALID INPUT!" << std::endl;
+            std::cout << RED << "INVALID INPUT!" << RED << std::endl;
             return false;
         }
 
