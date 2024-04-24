@@ -257,7 +257,7 @@ void pvpTimed(int sizeBoard, bool gameActive) {
         {
             fullTime = timeLeft2;
         }
-        cout << "You have " << fullTime << "to make a move!" << endl;
+        cout << "You have " << fullTime << " seconds to make a move!" << endl;
         cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
         if (moveStartTime != loopStartTime) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
