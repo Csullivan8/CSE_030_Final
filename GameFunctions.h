@@ -57,6 +57,7 @@ void Menu() {
   cout << "5: Wins Collected" << endl;
   cout << "6: Erase Wins Data" << endl;
   cout << "7: quit" << endl << endl;
+  cout << "8: pvp mode TIMMMEEEEDDD!!!!" << endl << endl;
   cout << "Choose an Option to Continue." << endl;
 }
 
@@ -178,6 +179,75 @@ void pvp(int sizeBoard, bool gameActive) {
           cout << "The last player took " << difftime(time(0), moveStartTime)
                << " seconds." << endl;
 }
+          if(!hasErrored)
+          {
+            moveStartTime = time(0);
+          }
+        
+        cout << "Enter where you would like to go in \"row, column\" format!"
+             << endl;
+        string theMove;
+        getline(cin, theMove);
+        system("clear");
+        splitInput = split(theMove, ',');
+        if (splitInput.size() > 1) {
+          try {
+            x = stoi(splitInput[0]);
+            y = stoi(splitInput[1]);
+
+            acceptedInput = true;
+          } catch (exception &err) {
+            cout << "Please enter a valid input!" << endl;
+          }
+        } else {
+          cout << "Please enter a valid input!" << endl;
+        }
+        hasErrored = true;
+      }
+      pvpGame.play(x, y);
+      if (pvpGame.done == true) {
+        gameActive = false;
+        if (pvpGame.hasWon(0)) {
+            cout << pvpGame << endl;
+            printWinMessage(1);
+        } else if (pvpGame.hasWon(1)) {
+            cout << pvpGame << endl;
+            printWinMessage(1);
+        } else {
+            cout << "It is a draw." << endl;
+        }
+        points(gameActive, pvpGame.hasWon(0), "player1");
+        points(gameActive, pvpGame.hasWon(1), "player2");
+      }
+    }
+    cout << "The game took a combined " << difftime(time(0), loopStartTime)
+         << " seconds." << endl;
+  }
+}
+
+void pvpTimed(int sizeBoard, bool gameActive) {
+  system("clear");
+  if (sizeBoard < 1) {
+    cout << "Error. Enter a valid input";
+  } else {
+    GameState pvpGame(sizeBoard);
+    string temp;
+    getline(cin, temp);
+    time_t loopStartTime = time(0);
+    time_t moveStartTime = loopStartTime;
+    while (gameActive) {
+      bool acceptedInput = false;
+      vector<string> splitInput;
+      int x;
+      int y;
+      bool hasErrored = false;
+      while (!acceptedInput) {
+        cout << pvpGame << endl;
+        cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
+        if (moveStartTime != loopStartTime) {
+          cout << "The last player took " << difftime(time(0), moveStartTime)
+               << " seconds." << endl;
+        }
           if(!hasErrored)
           {
             moveStartTime = time(0);
