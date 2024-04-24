@@ -159,7 +159,7 @@ void pvp(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-
+      moveStartTime = time(0);
       while (!acceptedInput) {
         cout << pvpGame << endl;
         cout << "Player " << 1 + pvpGame.currentTurn << "'s turn" << endl;
@@ -186,7 +186,6 @@ void pvp(int sizeBoard, bool gameActive) {
           cout << "Please enter a valid input!" << endl;
         }
       }
-      moveStartTime = time(0);
       pvpGame.play(x, y);
       if (pvpGame.done == true) {
         gameActive = false;
@@ -232,7 +231,7 @@ void EasyAi(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-
+      moveStartTime = time(0);
       while (!acceptedInput) {
         cout << pveEasyGame << endl;
         cout << "Your turn!" << endl;
@@ -259,7 +258,6 @@ void EasyAi(int sizeBoard, bool gameActive) {
           cout << "Please enter a valid input!" << endl;
         }
       }
-      moveStartTime = time(0);
       pveEasyGame.play(x, y);
       if (pveEasyGame.done == true) {
         gameActive = false;
@@ -334,7 +332,7 @@ void HardAi(int sizeBoard, bool gameActive) {
       vector<string> splitInput;
       int x;
       int y;
-
+      moveStartTime = time(0);
       while (!acceptedInput) {
         cout << pveHardGame << endl;
         cout << "Your turn! EXETREME VERSION" << endl;
@@ -360,7 +358,6 @@ void HardAi(int sizeBoard, bool gameActive) {
           cout << "Please enter a valid input!" << endl;
         }
       }
-      moveStartTime = time(0);
       pveHardGame.play(x, y);
       // std::cout << "NO SEGEMENTATION FAULT HERE.";
       if (pveHardGame.done == true) {
